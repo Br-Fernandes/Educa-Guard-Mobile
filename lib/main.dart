@@ -1,12 +1,17 @@
 import 'package:educa_guardia/views/auth/login_screen.dart';
 import 'package:face_camera/face_camera.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized(); //Add this
 
   await FaceCamera.initialize(); //Add thi
-
+  SystemChrome.setPreferredOrientations([
+    DeviceOrientation.portraitUp,
+    DeviceOrientation.portraitDown,
+  ]);
   runApp(const MyApp());
 }
 
