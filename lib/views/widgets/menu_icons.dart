@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../emergency_calls_screen.dart';
+
 class HomeIcon extends StatelessWidget {
   const HomeIcon({super.key});
 
@@ -12,7 +14,7 @@ class HomeIcon extends StatelessWidget {
           backgroundColor: Colors.white,
           child: IconButton(
             onPressed: () {},
-            icon: Icon(
+            icon: const Icon(
               Icons.home_filled,
               size: 50,
             ),
@@ -38,7 +40,7 @@ class ReportIcon extends StatelessWidget {
       children: [
         IconButton(
           onPressed: () {},
-          icon: Icon(
+          icon: const Icon(
             Icons.table_view_sharp,
           ),
         ),
@@ -57,7 +59,7 @@ class MessagesIcon extends StatelessWidget {
       children: [
         IconButton(
           onPressed: () {},
-          icon: Icon(
+          icon: const Icon(
             Icons.message_outlined,
           ),
         ),
@@ -75,9 +77,15 @@ class EmergencyIcon extends StatelessWidget {
     return Column(
       children: [
         IconButton(
-          onPressed: () {},
-          icon: Icon(
+          onPressed: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => const EmergencyCallsScreen()),
+            );
+          },
+          icon: const Icon(
             Icons.phone,
+            color: Colors.red, // Adiciona um toque visual de emergência
           ),
         ),
         const Text('Emergência')

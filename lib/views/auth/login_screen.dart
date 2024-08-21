@@ -244,9 +244,18 @@ class LoginScreen extends StatelessWidget {
                       child: ElevatedButton(
                         onPressed: () async {
                           try {
-                            await AuthController.loginUser(
+                            var output = await AuthController.loginUser(
                                 _usernameController.text,
                                 _passwordController.text);
+
+                            if(output != null) {
+                              Navigator.pushReplacement(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) =>
+                                        MenuScreen(user: output)),
+                              );
+                            }
                           } catch (e) {
                             _showDialog("Erro", "Usuário ou senha incorretos!");
                           }
