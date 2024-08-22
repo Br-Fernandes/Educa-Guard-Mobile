@@ -1,10 +1,10 @@
 import 'package:educa_guardia/views/menu_screen.dart';
 import 'package:educa_guardia/views/recognition_screen.dart';
-import 'package:educa_guardia/views/widgets/CircleBackground.dart';
+import 'package:educa_guardia/views/widgets/circle_background.dart';
 import 'package:educa_guardia/controllers/auth_controller.dart';
 import 'package:educa_guardia/views/recover_account_screen.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:educa_guardia/views/widgets/PasswordField.dart';
+import 'package:educa_guardia/views/widgets/password_field.dart';
 import 'package:flutter/material.dart';
 
 class LoginScreen extends StatelessWidget {

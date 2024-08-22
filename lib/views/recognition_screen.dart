@@ -57,12 +57,12 @@ class _RecognitionScreenState extends State<RecognitionScreen> {
                   if (capturedImage == null)
                     Image.asset(
                       'assets/images/foco-da-camera.png',
-                      width: 200,
+                      width: 180,
                     )
                   else
                     Image.file(
                       capturedImage!,
-                      width: 200,
+                      width: 180,
                     ),
                   const Column(
                     children: [
