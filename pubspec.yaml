@@ -33,6 +33,7 @@ dependencies:
   http: ^1.2.2  
   face_camera: ^0.1.2
   camera: ^0.11.0+2
+  flutter_native_splash: ^2.3.1
 
 
   # The following adds the Cupertino Icons font to your application.
@@ -49,6 +50,7 @@ dev_dependencies:
   # package. See that file for information about deactivating specific lint
   # rules and activating additional ones.
   flutter_lints: ^3.0.0
+
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
@@ -73,6 +75,22 @@ flutter:
     - assets/images/woman.png
     - assets/images/relatorio-monitoramento.png
     - assets/images/relatorio-presenca.png
+
+
+flutter_native_splash:
+  color: "#044BD9"  # Cor de fundo da splash screen
+  image: assets/images/Logo_SimplesBranca.png # Caminho para a imagem da splash screen
+  color_dark: "#044BD9"
+  fullscreen: true
+
+  android_12:
+    image: assets/images/Logo_SimplesBranca.png
+    icon_background_color: "#044BD9"
+    icon_background_color_dark: "#044BD9"
+
+    android: true
+    ios: true
+    web: false
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
