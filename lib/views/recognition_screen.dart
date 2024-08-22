@@ -2,7 +2,6 @@ import 'dart:io';
 import 'package:educa_guardia/controllers/auth_controller.dart';
 import 'package:educa_guardia/views/chat.dart';
 import 'package:educa_guardia/views/face_camera_screen.dart';
-import 'package:educa_guardia/views/menu_screen.dart';
 import 'package:flutter/material.dart';
 
 class RecognitionScreen extends StatefulWidget {
@@ -16,6 +15,25 @@ class _RecognitionScreenState extends State<RecognitionScreen> {
   bool isCapturing = false;
   File? capturedImage;
   final TextEditingController _usernameController = TextEditingController();
+
+  void _showDialog(String title, String content) {
+    showDialog(
+      context: context,
+      barrierDismissible: false,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: Text(title),
+          content: Text(content),
+          actions: [
+            TextButton(
+              onPressed: () => Navigator.of(context).pop(),
+              child: const Text('OK'),
+            ),
+          ],
+        );
+      },
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -103,6 +121,8 @@ class _RecognitionScreenState extends State<RecognitionScreen> {
                               context,
                               MaterialPageRoute(builder: (context) => const Chat()),
                             );
+                          } else {
+                            _showDialog("Erro!", "Usuário inexistente ou face não reconhecida!");
                           }
                         }
                       },

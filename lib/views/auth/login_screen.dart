@@ -1,8 +1,9 @@
 import 'package:educa_guardia/views/menu_screen.dart';
 import 'package:educa_guardia/views/recognition_screen.dart';
-import 'package:educa_guardia/views/widgets//CircleBackground.dart';
+import 'package:educa_guardia/views/widgets/CircleBackground.dart';
 import 'package:educa_guardia/controllers/auth_controller.dart';
 import 'package:educa_guardia/views/recover_account_screen.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class LoginScreen extends StatelessWidget {
@@ -13,9 +14,30 @@ class LoginScreen extends StatelessWidget {
 
   LoginScreen({super.key});
 
+
+
   @override
   Widget build(BuildContext context) {
     bool isKeyboardVisible = MediaQuery.of(context).viewInsets.bottom != 0;
+
+    void _showDialog(String title, String content) {
+      showDialog(
+        context: context,
+        barrierDismissible: false,
+        builder: (BuildContext context) {
+          return AlertDialog(
+            title: Text(title),
+            content: Text(content),
+            actions: [
+              TextButton(
+                onPressed: () => Navigator.of(context).pop(),
+                child: const Text('OK'),
+              ),
+            ],
+          );
+        },
+      );
+    }
 
     return Scaffold(
       body: Stack(
@@ -37,8 +59,9 @@ class LoginScreen extends StatelessWidget {
               ),
               Padding(
                 padding:
-                    EdgeInsets.all(MediaQuery.of(context).size.width * 0.1),
+                EdgeInsets.all(MediaQuery.of(context).size.width * 0.1),
                 child: Form(
+                  key: _globalKey,
                   child: Column(
                     children: [
                       Container(
@@ -49,8 +72,7 @@ class LoginScreen extends StatelessWidget {
                               color: Colors.black.withOpacity(0.3),
                               spreadRadius: 1,
                               blurRadius: 5,
-                              offset: const Offset(
-                                  0, 5), // changes position of shadow
+                              offset: const Offset(0, 5),
                             ),
                           ],
                         ),
@@ -60,7 +82,7 @@ class LoginScreen extends StatelessWidget {
                             labelText: 'Insira seu Usuário',
                             border: OutlineInputBorder(
                               borderRadius:
-                                  BorderRadius.all(Radius.circular(15)),
+                              BorderRadius.all(Radius.circular(15)),
                             ),
                             prefixIcon: Icon(Icons.person_2_rounded),
                             prefixIconColor: Colors.black,
@@ -80,19 +102,18 @@ class LoginScreen extends StatelessWidget {
                               color: Colors.black.withOpacity(0.3),
                               spreadRadius: 1,
                               blurRadius: 5,
-                              offset: const Offset(
-                                  0, 5), // changes position of shadow
+                              offset: const Offset(0, 5),
                             ),
                           ],
                         ),
                         child: TextFormField(
                           controller: _passwordController,
-                          obscureText: true, // Para esconder a senha
+                          obscureText: true,
                           decoration: const InputDecoration(
                             labelText: 'Insira sua Senha',
                             border: OutlineInputBorder(
                               borderRadius:
-                                  BorderRadius.all(Radius.circular(15)),
+                              BorderRadius.all(Radius.circular(15)),
                             ),
                             prefixIcon: Icon(Icons.lock),
                             prefixIconColor: Colors.black,
@@ -144,34 +165,26 @@ class LoginScreen extends StatelessWidget {
                                   _passwordController.text,
                                 );
 
-                                print("Output: $output");
-
-                            
                                 if (output != null) {
-                                  print(output.role.toString());
-                            
                                   Navigator.pushReplacement(
                                     context,
-                                    MaterialPageRoute(builder: (context) => MenuScreen(user: output)),
+                                    MaterialPageRoute(
+                                        builder: (context) =>
+                                            MenuScreen(user: output)),
                                   );
                                 } else {
                                   throw Exception("Login falhou");
                                 }
                               } catch (e) {
-                                ScaffoldMessenger.of(context).showSnackBar(
-                                  const SnackBar(
-                                    content: Text("Erro ao logar!"),
-                                  ),
-                                );
+                                _showDialog("Erro", "Insira as informações de login!");
                               }
                             },
                             style: ElevatedButton.styleFrom(
                               shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(9),
                               ),
-                              elevation: 10, 
-                              shadowColor: Colors.black
-                                  .withOpacity(1),
+                              elevation: 10,
+                              shadowColor: Colors.black.withOpacity(1),
                             ),
                             child: const Text(
                               "Login",
@@ -235,14 +248,12 @@ class LoginScreen extends StatelessWidget {
                                 _usernameController.text,
                                 _passwordController.text);
                           } catch (e) {
-                            ScaffoldMessenger.of(context).showSnackBar(
-                              const SnackBar(content: Text("Erro ao logar!")),
-                            );
+                            _showDialog("Erro", "Usuário ou senha incorretos!");
                           }
                         },
                         style: ElevatedButton.styleFrom(
                             backgroundColor:
-                                const Color.fromRGBO(7, 98, 217, 1.0),
+                            const Color.fromRGBO(7, 98, 217, 1.0),
                             shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(9))),
                         child: const Text(
@@ -262,11 +273,11 @@ class LoginScreen extends StatelessWidget {
                               context,
                               MaterialPageRoute(
                                   builder: (context) =>
-                                      const RecognitionScreen()));
+                                  const RecognitionScreen()));
                         },
                         style: ElevatedButton.styleFrom(
                             backgroundColor:
-                                const Color.fromRGBO(7, 98, 217, 1.0),
+                            const Color.fromRGBO(7, 98, 217, 1.0),
                             shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(9))),
                         child: const Text(
