@@ -1,16 +1,18 @@
 import 'package:educa_guardia/views/menu_screen.dart';
 import 'package:educa_guardia/views/recognition_screen.dart';
-import 'package:educa_guardia/views/widgets/CircleBackground.dart';
+import 'package:educa_guardia/views/widgets/circle_background.dart';
 import 'package:educa_guardia/controllers/auth_controller.dart';
 import 'package:educa_guardia/views/recover_account_screen.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:educa_guardia/views/widgets/password_field.dart';
 import 'package:flutter/material.dart';
 
 class LoginScreen extends StatelessWidget {
+
   final GlobalKey<FormState> _globalKey = GlobalKey<FormState>();
 
   final _usernameController = TextEditingController();
-  final _passwordController = TextEditingController();
+  final TextEditingController _passwordController = TextEditingController();
 
   LoginScreen({super.key});
 
@@ -94,34 +96,7 @@ class LoginScreen extends StatelessWidget {
                       const SizedBox(
                         height: 30,
                       ),
-                      Container(
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(15),
-                          boxShadow: [
-                            BoxShadow(
-                              color: Colors.black.withOpacity(0.3),
-                              spreadRadius: 1,
-                              blurRadius: 5,
-                              offset: const Offset(0, 5),
-                            ),
-                          ],
-                        ),
-                        child: TextFormField(
-                          controller: _passwordController,
-                          obscureText: true,
-                          decoration: const InputDecoration(
-                            labelText: 'Insira sua Senha',
-                            border: OutlineInputBorder(
-                              borderRadius:
-                              BorderRadius.all(Radius.circular(15)),
-                            ),
-                            prefixIcon: Icon(Icons.lock),
-                            prefixIconColor: Colors.black,
-                            fillColor: Colors.white,
-                            filled: true,
-                          ),
-                        ),
-                      ),
+                      PasswordField(controller: _passwordController),
                       Padding(
                         padding: const EdgeInsets.all(10),
                         child: Row(
@@ -244,11 +219,23 @@ class LoginScreen extends StatelessWidget {
                       child: ElevatedButton(
                         onPressed: () async {
                           try {
-                            await AuthController.loginUser(
-                                _usernameController.text,
-                                _passwordController.text);
+                            var output = await AuthController.loginUser(
+                              _usernameController.text,
+                              _passwordController.text,
+                            );
+
+                            if (output != null) {
+                              Navigator.pushReplacement(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) =>
+                                        MenuScreen(user: output)),
+                              );
+                            } else {
+                              throw Exception("Login falhou");
+                            }
                           } catch (e) {
-                            _showDialog("Erro", "Usuário ou senha incorretos!");
+                            _showDialog("Erro", "Insira as informações de login!");
                           }
                         },
                         style: ElevatedButton.styleFrom(
@@ -293,6 +280,7 @@ class LoginScreen extends StatelessWidget {
                 ),
               ),
             ),
+
         ],
       ),
     );
