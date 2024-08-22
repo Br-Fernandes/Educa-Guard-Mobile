@@ -16,6 +16,25 @@ class _RecognitionScreenState extends State<RecognitionScreen> {
   File? capturedImage;
   final TextEditingController _usernameController = TextEditingController();
 
+  void _showDialog(String title, String content) {
+    showDialog(
+      context: context,
+      barrierDismissible: false,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: Text(title),
+          content: Text(content),
+          actions: [
+            TextButton(
+              onPressed: () => Navigator.of(context).pop(),
+              child: const Text('OK'),
+            ),
+          ],
+        );
+      },
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -102,6 +121,8 @@ class _RecognitionScreenState extends State<RecognitionScreen> {
                               context,
                               MaterialPageRoute(builder: (context) => const Chat()),
                             );
+                          } else {
+                            _showDialog("Erro!", "Usuário inexistente ou face não reconhecida!");
                           }
                         }
                       },
