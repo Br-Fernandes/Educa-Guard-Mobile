@@ -15,38 +15,64 @@ class MenuScreen extends StatelessWidget {
 
     if (user.role == 'ROLE_ADMIN') {
       title = 'Gestor';
-      firstIcons = [HomeIcon(), ReportIcon()];
-      secondIcons = [MessagesIcon(), EmergencyIcon()];
+      firstIcons = [const HomeIcon(), const ReportIcon()];
+      secondIcons = [const MessagesIcon(), const EmergencyIcon()];
     } else if (user.role == 'ROLE_PROFESSOR') {
       title = 'Professor';
-      firstIcons = [HomeIcon(), PresenceListIcon()];
-      secondIcons = [MessagesIcon()];
+      firstIcons = [const HomeIcon(), const PresenceListIcon()];
+      secondIcons = [const MessagesIcon()];
     } else if (user.role == 'ROLE_OPERADOR_MONITORAMENTO') {
       title = 'Operador de Monitoramento';
-      firstIcons = [HomeIcon(), MonitoringIcon()];
-      secondIcons = [MessagesIcon()];
+      firstIcons = [const HomeIcon(), const MonitoringIcon()];
+      secondIcons = [const MessagesIcon()];
     } else if (user.role == 'ROLE_SEGURANCA') {
       title = 'Segurança';
-      firstIcons = [HomeIcon(), MessagesIcon()];
+      firstIcons = [const HomeIcon(), const MessagesIcon()];
     }
 
     return Scaffold(
       appBar: AppBar(
-        title: Text('Bem vindo $title'),
+        title: Row(
+          children: [
+            Image.asset(
+              "assets/images/woman.png",
+              width: 25,
+            ),
+            const SizedBox(
+              width: 8,
+            ),
+            Text('Bem vindo $title')
+          ],
+        ),
+        actions: const [
+          Icon(
+            Icons.notifications,
+            color: Colors.black,
+            size: 25,
+          ),
+          SizedBox(width: 15,)
+        ],
+        backgroundColor: Colors.white,
       ),
       body: Container(
         decoration: const BoxDecoration(
           image: DecorationImage(
             image: AssetImage('assets/images/menu.png'),
-            fit: BoxFit.cover,
+            fit: BoxFit.fill,
           ),
         ),
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.start,
           children: [
+            SizedBox(
+              height: MediaQuery.of(context).size.height * 0.1,
+            ),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: firstIcons,
+            ),
+            SizedBox(
+              height: MediaQuery.of(context).size.height * 0.1,
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,

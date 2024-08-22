@@ -7,6 +7,10 @@ class EmergencyCallsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {},
+        child: const Icon(Icons.system_security_update_warning_outlined),
+      ),
       body: Padding(
         padding: EdgeInsets.all(MediaQuery.of(context).size.width * 0.1),
         child: Column(

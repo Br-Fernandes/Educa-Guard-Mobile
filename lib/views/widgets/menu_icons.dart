@@ -1,3 +1,8 @@
+import 'package:educa_guardia/views/chat.dart';
+import 'package:educa_guardia/views/emergency_calls_screen.dart';
+import 'package:educa_guardia/views/incidents_report_screen.dart';
+import 'package:educa_guardia/views/monitoring_screen.dart';
+import 'package:educa_guardia/views/presence_screen.dart';
 import 'package:flutter/material.dart';
 
 class HomeIcon extends StatelessWidget {
@@ -11,18 +16,19 @@ class HomeIcon extends StatelessWidget {
           radius: 35,
           backgroundColor: Colors.white,
           child: IconButton(
-            onPressed: () {},
-            icon: Icon(
+            onPressed: () {
+              
+            },
+            icon: const Icon(
               Icons.home_filled,
               size: 50,
+              color: Colors.black,
             ),
           ),
         ),
         const Text(
           'Início',
-          style: TextStyle(
-            fontWeight: FontWeight.bold
-          ),
+          style: TextStyle(fontWeight: FontWeight.bold),
         )
       ],
     );
@@ -36,13 +42,27 @@ class ReportIcon extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        IconButton(
-          onPressed: () {},
-          icon: Icon(
-            Icons.table_view_sharp,
+        CircleAvatar(
+          radius: 35,
+          backgroundColor: Colors.white,
+          child: IconButton(
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => const IncidentsReportScreen()),
+              );
+            },
+            icon: const Icon(
+              Icons.table_view_sharp,
+              size: 50,
+              color: Colors.black,
+            ),
           ),
         ),
-        const Text('Relatório')
+        const Text(
+          'Relatório',
+          style: TextStyle(fontWeight: FontWeight.bold),
+        )
       ],
     );
   }
@@ -55,13 +75,27 @@ class MessagesIcon extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        IconButton(
-          onPressed: () {},
-          icon: Icon(
-            Icons.message_outlined,
+        CircleAvatar(
+          radius: 35,
+          backgroundColor: Colors.white,
+          child: IconButton(
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => const Chat()),
+              );
+            },
+            icon: const Icon(
+              Icons.message_outlined,
+              size: 50,
+              color: Colors.black,
+            ),
           ),
         ),
-        const Text('Mensagens')
+        const Text(
+          'Mensagens',
+          style: TextStyle(fontWeight: FontWeight.bold),
+        )
       ],
     );
   }
@@ -74,13 +108,27 @@ class EmergencyIcon extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        IconButton(
-          onPressed: () {},
-          icon: Icon(
-            Icons.phone,
+        CircleAvatar(
+          radius: 35,
+          backgroundColor: Colors.white,
+          child: IconButton(
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => const EmergencyCallsScreen()),
+              );
+            },
+            icon: const Icon(
+              Icons.phone,
+              size: 50,
+              color: Colors.black,
+            ),
           ),
         ),
-        const Text('Emergência')
+        const Text(
+          'Emergência',
+          style: TextStyle(fontWeight: FontWeight.bold),
+        )
       ],
     );
   }
@@ -93,13 +141,27 @@ class MonitoringIcon extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        IconButton(
-          onPressed: () {},
-          icon: const Icon(
-            Icons.monitor,
+        CircleAvatar(
+          radius: 35,
+          backgroundColor: Colors.white,
+          child: IconButton(
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => const MonitoringScreen()),
+              );
+            },
+            icon: const Icon(
+              Icons.monitor,
+              size: 50,
+              color: Colors.black,
+            ),
           ),
         ),
-        const Text('Monitoramento')
+        const Text(
+          'Monitoramento',
+          style: TextStyle(fontWeight: FontWeight.bold),
+        )
       ],
     );
   }
@@ -112,13 +174,27 @@ class PresenceListIcon extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        IconButton(
-          onPressed: () {},
-          icon: const Icon(
-            Icons.person,
+        CircleAvatar(
+          radius: 35,
+          backgroundColor: Colors.white,
+          child: IconButton(
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => const PresenceScreen()),
+              );
+            },
+            icon: const Icon(
+              Icons.person,
+              size: 50,
+              color: Colors.black,
+            ),
           ),
         ),
-        const Text('Lista de Presença')
+        const Text(
+          'Lista de Presença',
+          style: TextStyle(fontWeight: FontWeight.bold),
+        )
       ],
     );
   }
